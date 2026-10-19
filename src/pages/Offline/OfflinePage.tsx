@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppHeader } from '../../components/AppHeader';
 
 export const OfflinePage: React.FC = () => {
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
@@ -69,37 +70,12 @@ export const OfflinePage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Topo / Header com navegação */}
-      <div className="topo">
-        <nav className="pk-nav" style={{ position: 'static' }}>
-          <NavLink to="/" end className="pk-nav-item">
-            Pokédex
-          </NavLink>
-          <NavLink to="/arena" className="pk-nav-item">
-            Arena
-          </NavLink>
-          <NavLink to="/tipos" className="pk-nav-item">
-            Tipos
-          </NavLink>
-          <NavLink to="/quiz" className="pk-nav-item">
-            Quiz
-          </NavLink>
-          <NavLink to="/safari" className="pk-nav-item">
-            Safari
-          </NavLink>
-          <NavLink to="/offline" className="pk-nav-item active">
-            Offline
-          </NavLink>
-        </nav>
-
-        <div className="titulo">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
-            <b>CENTRAL OFFLINE & PWA</b>
-            <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#FFCB05', background: 'rgba(255,203,5,.14)', border: '1px solid rgba(255,203,5,.35)', padding: '1px 7px', borderRadius: '999px', textTransform: 'lowercase' }}>por luscaarmstrong</span>
-          </div>
-          <span>GERENCIAMENTO DE CACHE E INSTALAÇÃO</span>
-        </div>
-      </div>
+      {/* Topo / Header unificado */}
+      <AppHeader
+        paginaAtual="offline"
+        titulo="CENTRAL OFFLINE & PWA"
+        subtitulo="GERENCIAMENTO DE CACHE E INSTALAÇÃO"
+      />
 
       <div style={{ position: 'absolute', inset: '70px 24px 20px 24px', display: 'flex', justifyContent: 'center' }}>
         <div className="vidro" style={{ width: '700px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>

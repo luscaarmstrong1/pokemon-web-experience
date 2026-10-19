@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppHeader } from '../../components/AppHeader';
 import {
   POKEMON_ARENA_LIST,
   POKEMON_ARENA_MAP,
@@ -328,37 +329,12 @@ export const ArenaPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Topo / Header com navegação */}
-      <div className="topo">
-        <nav className="pk-nav" style={{ position: 'static' }}>
-          <NavLink to="/" end className="pk-nav-item">
-            Pokédex
-          </NavLink>
-          <NavLink to="/arena" className="pk-nav-item active">
-            Arena
-          </NavLink>
-          <NavLink to="/tipos" className="pk-nav-item">
-            Tipos
-          </NavLink>
-          <NavLink to="/quiz" className="pk-nav-item">
-            Quiz
-          </NavLink>
-          <NavLink to="/safari" className="pk-nav-item">
-            Safari
-          </NavLink>
-          <NavLink to="/offline" className="pk-nav-item">
-            Offline
-          </NavLink>
-        </nav>
-
-        <div className="titulo">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
-            <b>ARENA POKÉMON</b>
-            <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#FFCB05', background: 'rgba(255,203,5,.14)', border: '1px solid rgba(255,203,5,.35)', padding: '1px 7px', borderRadius: '999px', textTransform: 'lowercase' }}>por luscaarmstrong</span>
-          </div>
-          <span>BATALHAS ESTATÍSTICAS · NÍVEL 50</span>
-        </div>
-      </div>
+      {/* Topo / Header unificado */}
+      <AppHeader
+        paginaAtual="arena"
+        titulo="ARENA POKÉMON"
+        subtitulo="BATALHAS ESTATÍSTICAS · NÍVEL 50"
+      />
 
       {/* FASE 1: SELEÇÃO DE EQUIPES */}
       {fase === 'selecao' && (

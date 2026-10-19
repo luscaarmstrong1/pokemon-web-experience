@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppHeader } from '../../components/AppHeader';
 import tiposDataRaw from '../../data/tipos.json';
 import arenaDadosRaw from '../../data/arena_dados.json';
 import { PokemonType, ArenaDados } from '../../types/pokemon';
@@ -140,52 +141,27 @@ export const TypesPage: React.FC = () => {
   return (
     <div className="pk-palco">
       {/* Topo / Header com navegação e abas */}
-      <div className="topo">
-        <nav className="pk-nav" style={{ position: 'static' }}>
-          <NavLink to="/" end className="pk-nav-item">
-            Pokédex
-          </NavLink>
-          <NavLink to="/arena" className="pk-nav-item">
-            Arena
-          </NavLink>
-          <NavLink to="/tipos" className="pk-nav-item active">
-            Tipos
-          </NavLink>
-          <NavLink to="/quiz" className="pk-nav-item">
-            Quiz
-          </NavLink>
-          <NavLink to="/safari" className="pk-nav-item">
-            Safari
-          </NavLink>
-          <NavLink to="/offline" className="pk-nav-item">
-            Offline
-          </NavLink>
-        </nav>
-
-        {/* Abas */}
-        <div className="abas" style={{ position: 'static', margin: '0 20px' }}>
-          <span className={aba === 'roda' ? 'on' : ''} onClick={() => setAba('roda')}>
-            Roda Interativa
-          </span>
-          <span className={aba === 'matriz' ? 'on' : ''} onClick={() => setAba('matriz')}>
-            Matriz 18×18
-          </span>
-          <span className={aba === 'rankings' ? 'on' : ''} onClick={() => setAba('rankings')}>
-            Rankings Defensivos (171)
-          </span>
-          <span className={aba === 'calc' ? 'on' : ''} onClick={() => setAba('calc')}>
-            Calculadora
-          </span>
-        </div>
-
-        <div className="titulo">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
-            <b>ANÁLISE DE TIPOS</b>
-            <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#FFCB05', background: 'rgba(255,203,5,.14)', border: '1px solid rgba(255,203,5,.35)', padding: '1px 7px', borderRadius: '999px', textTransform: 'lowercase' }}>por luscaarmstrong</span>
+      <AppHeader
+        paginaAtual="tipos"
+        titulo="ANÁLISE DE TIPOS"
+        subtitulo="EFICÁCIA · FRAQUEZAS · RESISTÊNCIAS"
+        centerContent={
+          <div className="abas" style={{ position: 'static', margin: 0, padding: 0 }}>
+            <span className={aba === 'roda' ? 'on' : ''} onClick={() => setAba('roda')}>
+              Roda
+            </span>
+            <span className={aba === 'matriz' ? 'on' : ''} onClick={() => setAba('matriz')}>
+              Matriz 18×18
+            </span>
+            <span className={aba === 'rankings' ? 'on' : ''} onClick={() => setAba('rankings')}>
+              Rankings (171)
+            </span>
+            <span className={aba === 'calc' ? 'on' : ''} onClick={() => setAba('calc')}>
+              Calculadora
+            </span>
           </div>
-          <span>EFICÁCIA · FRAQUEZAS · RESISTÊNCIAS</span>
-        </div>
-      </div>
+        }
+      />
 
       {/* ABA 1: RODA DE TIPOS */}
       {aba === 'roda' && (

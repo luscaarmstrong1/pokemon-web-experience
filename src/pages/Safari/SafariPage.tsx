@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppHeader } from '../../components/AppHeader';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon } from '../../types/pokemon';
 import '../../styles/safari.css';
@@ -238,37 +239,12 @@ export const SafariPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Topo / Header com navegação */}
-      <div className="topo">
-        <nav className="pk-nav" style={{ position: 'static' }}>
-          <NavLink to="/" end className="pk-nav-item">
-            Pokédex
-          </NavLink>
-          <NavLink to="/arena" className="pk-nav-item">
-            Arena
-          </NavLink>
-          <NavLink to="/tipos" className="pk-nav-item">
-            Tipos
-          </NavLink>
-          <NavLink to="/quiz" className="pk-nav-item">
-            Quiz
-          </NavLink>
-          <NavLink to="/safari" className="pk-nav-item active">
-            Safari
-          </NavLink>
-          <NavLink to="/offline" className="pk-nav-item">
-            Offline
-          </NavLink>
-        </nav>
-
-        <div className="titulo">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
-            <b>ZONA SAFARI</b>
-            <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#FFCB05', background: 'rgba(255,203,5,.14)', border: '1px solid rgba(255,203,5,.35)', padding: '1px 7px', borderRadius: '999px', textTransform: 'lowercase' }}>por luscaarmstrong</span>
-          </div>
-          <span>EXPLORAÇÃO E CAPTURA</span>
-        </div>
-      </div>
+      {/* Topo / Header unificado */}
+      <AppHeader
+        paginaAtual="safari"
+        titulo="ZONA SAFARI"
+        subtitulo="EXPLORAÇÃO E CAPTURA"
+      />
 
       <div style={{ position: 'absolute', inset: '60px 16px 14px 16px', display: 'flex', gap: '16px' }}>
         {/* Tela do Mapa (Canvas 960x640) */}

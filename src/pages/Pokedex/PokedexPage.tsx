@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon, CartaTCG } from '../../types/pokemon';
 import { DynamicBackground } from '../../components/Pokedex/DynamicBackground';
-import { TopNavigation } from '../../components/Pokedex/TopNavigation';
+import { AppHeader } from '../../components/AppHeader';
 import { PokemonSelector } from '../../components/Pokedex/PokemonSelector';
 import { PokemonHero } from '../../components/Pokedex/PokemonHero';
 import { ModeSelector } from '../../components/Pokedex/ModeSelector';
@@ -73,11 +73,18 @@ export const PokedexPage: React.FC = () => {
         isShiny={modo === 2}
       />
 
-      {/* Topo: Navegação e Marca Pokédex */}
-      <TopNavigation totalPokemon={allPokemonList.length} />
+      {/* Topo Unificado: Marca, Navegação Central e Contexto */}
+      <AppHeader
+        paginaAtual="pokedex"
+        titulo="POKÉDEX NACIONAL"
+        subtitulo="CATÁLOGO COMPLETO & ATRIBUTOS"
+        totalPokemon={allPokemonList.length}
+      />
 
       {/* Segmentador de Modos: Normal / Shiny / Cartas */}
-      <ModeSelector modo={modo} onChangeModo={setModo} />
+      <div style={{ position: 'absolute', left: '364px', top: '70px', zIndex: 20 }}>
+        <ModeSelector modo={modo} onChangeModo={setModo} />
+      </div>
 
       {/* Painel Esquerdo: Lista de Pokémon com Busca e Filtros */}
       <PokemonSelector
