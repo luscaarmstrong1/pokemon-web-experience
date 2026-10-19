@@ -1,12 +1,17 @@
-/* Estilos Globais 1:1 replicados da Pokédex Power BI */
+/* Estilos Globais 1:1 + Assinatura Visual Premium de luscaarmstrong */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 
 :root {
-  --fundo-base: #0B0E14;
-  --cartao-bg: #141922;
-  --texto-base: #E9ECF2;
+  --fundo-base: #07090E;
+  --cartao-bg: #0E131F;
+  --texto-base: #EDF2F7;
   --destaque: #FFCB05;
-  --destaque-hover: #FFE066;
-  --borda-vidro: rgba(255, 255, 255, 0.08);
+  --destaque-glow: rgba(255, 203, 5, 0.45);
+  --cyan-tech: #00F0FF;
+  --cyan-glow: rgba(0, 240, 255, 0.35);
+  --borda-vidro: rgba(255, 255, 255, 0.09);
+  --borda-glow: rgba(0, 240, 255, 0.2);
 }
 
 * {
@@ -17,12 +22,13 @@
 }
 
 body {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
   background-color: var(--fundo-base);
   color: var(--texto-base);
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
@@ -32,17 +38,29 @@ body {
   position: relative;
 }
 
-/* Scrollbar estilizada idêntica */
+/* Fundo espacial / tech com aurora sutil e grid */
+.app-viewport-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.08), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(255, 203, 5, 0.07), transparent 45%),
+    radial-gradient(circle at 50% 50%, #0D121D, #05070A 85%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar estilizada ultra fina e suave */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--destaque);
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -56,17 +74,22 @@ body {
   flex-shrink: 0;
   transform-origin: center center;
   overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  background: radial-gradient(circle at 50% 30%, #1A2130, #0B0E14 70%);
+  border-radius: 20px;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 50px rgba(0, 240, 255, 0.08);
+  background: radial-gradient(circle at 50% 30%, #151C2A, #080A10 70%);
 }
 
-/* Vidro translúcido */
+/* Vidro translúcido com acabamento refinado e backdrop blur */
 .vidro {
   border-radius: 18px;
-  background: linear-gradient(160deg, rgba(30,36,48,.92), rgba(14,17,24,.94));
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 18px 40px rgba(0,0,0,.35);
+  background: linear-gradient(160deg, rgba(22, 28, 42, 0.88), rgba(10, 13, 20, 0.92));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 45px rgba(0, 0, 0, 0.45);
 }
 
 .pn {
@@ -75,9 +98,11 @@ body {
   height: 100%;
   padding: 14px 16px;
   border-radius: 18px;
-  background: linear-gradient(160deg, rgba(30,36,48,.90), rgba(14,17,24,.92));
-  border: 1px solid rgba(255,255,255,.07);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 18px 40px rgba(0,0,0,.35);
+  background: linear-gradient(160deg, rgba(22, 28, 42, 0.88), rgba(10, 13, 20, 0.92));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 45px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -108,7 +133,7 @@ body {
   margin-left: auto;
   font-size: 10px;
   font-weight: 600;
-  color: #737C8C;
+  color: #8A93A3;
 }
 
 .pn-total {
@@ -165,13 +190,13 @@ body {
   letter-spacing: .05em;
   cursor: pointer;
   user-select: none;
-  transition: transform .12s, filter .12s, box-shadow .12s;
+  transition: transform .14s cubic-bezier(0.2, 0.8, 0.4, 1), filter .14s, box-shadow .14s;
   white-space: nowrap;
 }
 
 .bt:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.12);
+  transform: translateY(-2px);
+  filter: brightness(1.15);
 }
 
 .bt.off {
@@ -180,21 +205,22 @@ body {
 }
 
 .bt-sec {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #E9ECF2;
 }
 
 .bt-sec.on {
-  background: rgba(255,203,5,.16);
+  background: rgba(255, 203, 5, 0.16);
   border-color: #FFCB05;
   color: #FFCB05;
+  box-shadow: 0 0 15px rgba(255, 203, 5, 0.25);
 }
 
 .bt-gold {
-  background: #FFCB05;
+  background: linear-gradient(135deg, #FFDF59, #FFCB05);
   color: #11151D;
-  box-shadow: 0 0 18px rgba(255,203,5,.35);
+  box-shadow: 0 0 20px rgba(255, 203, 5, 0.4);
 }
 
 .bt-go {
@@ -204,7 +230,7 @@ body {
   letter-spacing: .14em;
   background: linear-gradient(90deg, #FF5A36, #FFCB05);
   color: #11151D;
-  box-shadow: 0 0 28px rgba(255,140,40,.5);
+  box-shadow: 0 0 30px rgba(255, 140, 40, 0.55);
   animation: pulsa 2s ease-in-out infinite;
 }
 
@@ -238,7 +264,7 @@ body {
   display: block;
   font-size: 22px;
   font-weight: 900;
-  letter-spacing: .26em;
+  letter-spacing: .24em;
   color: #fff;
   line-height: 1.1;
 }

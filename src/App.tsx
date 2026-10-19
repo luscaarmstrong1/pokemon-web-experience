@@ -12,7 +12,7 @@ import './styles/animations.css';
 export const App: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Escalonamento responsivo 1:1 rigorosamente centralizado e com margem de respiro perfeita
+  // Escalonamento responsivo 1:1 rigorosamente centralizado com proporção dourada
   useEffect(() => {
     const handleResize = () => {
       const el = containerRef.current;
@@ -21,12 +21,11 @@ export const App: React.FC = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      // Deixa uma pequena folga de 2% para evitar encostar nas bordas de monitores ultrawide ou telas com barra de tarefas
-      const maxW = w * 0.98;
-      const maxH = h * 0.98;
+      // Mantém proporção perfeita de 1280x720 com margem estética de respiro
+      const maxW = w * 0.96;
+      const maxH = h * 0.96;
       const s = Math.min(maxW / 1280, maxH / 720);
 
-      // Centralização exata com transform-origin no centro
       palcos.forEach((p) => {
         p.style.transform = `scale(${s})`;
       });
@@ -48,9 +47,12 @@ export const App: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#0B0E14',
+        position: 'relative',
       }}
     >
+      {/* Background imersivo dinâmico da aplicação */}
+      <div className="app-viewport-bg" />
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PokedexPage />} />
