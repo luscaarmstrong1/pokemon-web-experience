@@ -392,26 +392,26 @@ export const PokemonHero: React.FC<Props> = ({
           position: relative;
           width: 100%;
           flex: 1 1 auto;
-          min-height: 0;
+          min-height: 220px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .hero-glow {
           position: absolute;
-          width: 360px;
-          height: 360px;
+          width: 440px;
+          height: 440px;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
         }
         .hero-anel {
           position: absolute;
-          width: 226px;
-          height: 226px;
+          width: 280px;
+          height: 280px;
           left: 50%;
           top: 50%;
-          margin: -115px 0 0 -115px;
+          margin: -140px 0 0 -140px;
           border-radius: 50%;
           border: 2px dashed;
           opacity: .40;
@@ -420,10 +420,10 @@ export const PokemonHero: React.FC<Props> = ({
         .hero-img {
           position: relative;
           z-index: 2;
-          height: 210px;
-          max-width: 80%;
+          height: min(290px, 42vh);
+          max-width: 90%;
           object-fit: contain;
-          filter: drop-shadow(0 18px 22px rgba(0,0,0,.55));
+          filter: drop-shadow(0 20px 26px rgba(0,0,0,.65));
           animation: flutua 4.5s ease-in-out infinite;
           cursor: pointer;
         }

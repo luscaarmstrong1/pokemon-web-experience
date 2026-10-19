@@ -92,7 +92,7 @@ export const PokedexPage: React.FC = () => {
 
         {/* Coluna 2: Apresentação Central do Pokémon e Linha Evolutiva */}
         <section className="pokedex-col-center">
-          <div className="hero-scroll-area">
+          <div className="hero-display-area">
             <PokemonHero
               pokemon={selectedPokemon}
               modo={modo}
@@ -101,6 +101,8 @@ export const PokedexPage: React.FC = () => {
               isEvolving={isEvolving}
               prevPokemon={prevPokemon}
             />
+          </div>
+          <div className="hero-evolution-dock">
             <EvolutionChain
               currentPokemon={selectedPokemon}
               allPokemon={allPokemonList}
@@ -160,17 +162,25 @@ export const PokedexPage: React.FC = () => {
           min-height: 0;
           display: flex;
           flex-direction: column;
+          gap: 12px;
           overflow: hidden;
         }
 
-        .hero-scroll-area {
-          height: 100%;
+        .hero-display-area {
+          flex: 1 1 auto;
           min-height: 0;
-          overflow-y: auto;
           display: flex;
           flex-direction: column;
-          gap: 12px;
-          padding-right: 4px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .hero-evolution-dock {
+          flex: 0 0 170px;
+          min-height: 170px;
+          display: flex;
+          flex-direction: column;
+          position: relative;
         }
 
         .pokedex-col-info {
