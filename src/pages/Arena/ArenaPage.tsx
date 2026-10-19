@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppHeader } from '../../components/AppHeader';
+import { ARENAS_TEMATICAS, ArenaCenario } from '../../data/arenasData';
+import { BattleEnvironment } from '../../components/Arena/BattleEnvironment';
+import { ArenaSelectorModal } from '../../components/Arena/ArenaSelectorModal';
+import { soundEngine } from '../../engines/soundEngine';
 import {
   POKEMON_ARENA_LIST,
   POKEMON_ARENA_MAP,
@@ -43,6 +47,12 @@ export const ArenaPage: React.FC = () => {
   const [bloquearAcoes, setBloquearAcoes] = useState<boolean>(false);
   const [previsaoWinrate, setPrevisaoWinrate] = useState<number | null>(null);
   const [calculandoPrevisao, setCalculandoPrevisao] = useState<boolean>(false);
+  const [cenario, setCenario] = useState<ArenaCenario>(ARENAS_TEMATICAS[0]);
+  const [horario, setHorario] = useState<'amanhecer' | 'dia' | 'entardecer' | 'noite'>('dia');
+  const [clima, setClima] = useState<'limpo' | 'chuva' | 'sol' | 'neve' | 'tempestade' | 'nevoa'>('limpo');
+  const [cameraShake, setCameraShake] = useState<boolean>(false);
+  const [mostrarSeletorArena, setMostrarSeletorArena] = useState<boolean>(false);
+  const [audioAtivo, setAudioAtivo] = useState<boolean>(() => soundEngine.isHabilitado());
 
   // Atualizar simulação de vitória quando a seleção mudar
   useEffect(() => {
@@ -274,6 +284,8 @@ export const ArenaPage: React.FC = () => {
     d: Combatant
   ) => {
     setNarracao(`${a.nome} usou ${golpe.nome}!`);
+    soundEngine.playAtaque(golpe.t);
+
     if (atacante === 'j') setAnimJ('investe-j');
     else setAnimO('investe-o');
     await delay(250);
@@ -283,11 +295,16 @@ export const ArenaPage: React.FC = () => {
     const res = calcularAtaque(a, d, golpe);
     if (res.erro) {
       setNarracao(`${a.nome} errou o ataque!`);
+      soundEngine.playErro();
       await delay(700);
       return;
     }
 
-    // Efeito visual de dano
+    // Efeito visual de dano e camera shake
+    soundEngine.playImpacto(res.crit);
+    setCameraShake(true);
+    setTimeout(() => setCameraShake(false), res.crit ? 500 : 350);
+
     if (atacante === 'j') setAnimO('dano');
     else setAnimJ('dano');
 
@@ -414,6 +431,29 @@ export const ArenaPage: React.FC = () => {
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
               />
+              <button
+                type="button"
+                className={`bt ${mostrarSeletorArena ? 'bt-gold' : 'bt-sec'}`}
+                style={{ height: '42px', padding: '0 12px', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                onClick={() => setMostrarSeletorArena(!mostrarSeletorArena)}
+                title="Configurar Arena e Clima"
+              >
+                <span>🏟️ {cenario.nome.split(' ')[0]}</span>
+              </button>
+              <button
+                type="button"
+                className={`bt ${audioAtivo ? 'bt-gold' : 'bt-sec'}`}
+                style={{ height: '42px', width: '42px', padding: 0, fontSize: '14px' }}
+                onClick={() => {
+                  const novo = !audioAtivo;
+                  setAudioAtivo(novo);
+                  soundEngine.setHabilitado(novo);
+                  if (novo) soundEngine.playClick();
+                }}
+                title={audioAtivo ? 'Áudio Ativo' : 'Áudio Mudo'}
+              >
+                {audioAtivo ? '🔊' : '🔇'}
+              </button>
               <div className="modos">
                 <span className={modo === 1 ? 'on' : ''} onClick={() => setModo(1)}>
                   1 vs 1
@@ -423,6 +463,21 @@ export const ArenaPage: React.FC = () => {
                 </span>
               </div>
             </div>
+
+            {/* Painel expansível de Seleção de Arena */}
+            {mostrarSeletorArena && (
+              <ArenaSelectorModal
+                cenarioSelecionado={cenario}
+                onSelecionar={(c) => {
+                  setCenario(c);
+                  setMostrarSeletorArena(false);
+                }}
+                horario={horario}
+                onChangeHorario={setHorario}
+                clima={clima}
+                onChangeClima={setClima}
+              />
+            )}
 
             {/* Filtros de Geração */}
             <div className="gens">
@@ -562,10 +617,13 @@ export const ArenaPage: React.FC = () => {
 
       {/* FASE 3 E 4: BATALHA E RESULTADO */}
       {(fase === 'luta' || fase === 'fim') && ladoJ && ladoO && (
-        <>
-          {/* Cenário e Plataformas */}
-          <div className="campo campo-j" style={{ '--c': corTipo(ativo(ladoJ).t[0]) } as React.CSSProperties} />
-          <div className="campo campo-o" style={{ '--c': corTipo(ativo(ladoO).t[0]) } as React.CSSProperties} />
+        <div className={`arena-combat-stage ${cameraShake ? 'treme-forte' : ''}`}>
+          {/* Cenário Cinematográfico Dinâmico (10 Arenas + Clima + Horário) */}
+          <BattleEnvironment
+            cenario={cenario}
+            horario={horario}
+            clima={clima}
+          />
           <div className="campo-luz" />
           <div className="diag" />
 
@@ -771,7 +829,7 @@ export const ArenaPage: React.FC = () => {
               </div>
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

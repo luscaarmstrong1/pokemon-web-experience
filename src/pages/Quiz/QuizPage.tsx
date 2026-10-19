@@ -4,6 +4,7 @@ import { AppHeader } from '../../components/AppHeader';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon } from '../../types/pokemon';
 import confetti from 'canvas-confetti';
+import { soundEngine } from '../../engines/soundEngine';
 import '../../styles/quiz.css';
 
 const allPokes = (pokemonDataRaw as Pokemon[]).filter((p) => p.isDefault);
@@ -92,6 +93,7 @@ export const QuizPage: React.FC = () => {
     setTotal((t) => t + 1);
 
     if (acertou) {
+      soundEngine.playVitoria();
       setAcertos((a) => a + 1);
       const novaSeq = seq + 1;
       setSeq(novaSeq);
@@ -115,6 +117,7 @@ export const QuizPage: React.FC = () => {
         origin: { y: 0.7 },
       });
     } else {
+      soundEngine.playErro();
       setSeq(0);
       setGanho(0);
     }
