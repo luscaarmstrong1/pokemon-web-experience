@@ -3,7 +3,6 @@ import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon, CartaTCG } from '../../types/pokemon';
 import { DynamicBackground } from '../../components/Pokedex/DynamicBackground';
 import { AppSidebar } from '../../components/AppSidebar';
-import { AppHeader } from '../../components/AppHeader';
 import { PokemonSelector } from '../../components/Pokedex/PokemonSelector';
 import { PokemonHero } from '../../components/Pokedex/PokemonHero';
 import { StatsRadar } from '../../components/Pokedex/StatsRadar';
@@ -75,14 +74,6 @@ export const PokedexPage: React.FC = () => {
 
       {/* Barra Lateral Vertical de Módulos (Esquerda) */}
       <AppSidebar paginaAtual="pokedex" />
-
-      {/* Topo Limpo: Informações do Módulo e Assinatura */}
-      <AppHeader
-        paginaAtual="pokedex"
-        titulo="POKÉDEX NACIONAL"
-        subtitulo="CATÁLOGO COMPLETO & ATRIBUTOS"
-        totalPokemon={allPokemonList.length}
-      />
 
       {/* Painel Esquerdo: Lista de Pokémon com Busca e Filtros */}
       <PokemonSelector

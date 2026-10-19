@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AppSidebar } from './components/AppSidebar';
 import { PokedexPage } from './pages/Pokedex/PokedexPage';
 import { ArenaPage } from './pages/Arena/ArenaPage';
 import { TypesPage } from './pages/Types/TypesPage';
@@ -12,7 +13,7 @@ import './styles/animations.css';
 export const App: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Escalonamento responsivo 1:1 rigorosamente centralizado com proporção dourada
+  // Escalonamento responsivo 1:1 rigorosamente centralizado ocupando a tela cheia
   useEffect(() => {
     const handleResize = () => {
       const el = containerRef.current;
@@ -21,10 +22,8 @@ export const App: React.FC = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      // Mantém proporção perfeita de 1280x720 com margem estética de respiro
-      const maxW = w * 0.96;
-      const maxH = h * 0.96;
-      const s = Math.min(maxW / 1280, maxH / 720);
+      // Ocupa a tela inteira mantendo proporção ideal sem barras pretas desnecessárias
+      const s = Math.min(w / 1280, h / 720);
 
       palcos.forEach((p) => {
         p.style.transform = `scale(${s})`;

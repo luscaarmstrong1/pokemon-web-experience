@@ -150,10 +150,10 @@ export const PokemonSelector: React.FC<Props> = ({
       <style>{`
         .selector-container {
           position: absolute;
-          left: 88px;
-          top: 68px;
-          width: 268px;
-          height: 636px;
+          left: 96px;
+          top: 14px;
+          width: 260px;
+          height: 692px;
           display: flex;
           flex-direction: column;
           gap: 8px;

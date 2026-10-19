@@ -92,20 +92,20 @@ export const AppSidebar: React.FC<Props> = () => {
           left: 12px;
           top: 14px;
           bottom: 14px;
-          width: 66px;
-          background: rgba(14, 19, 31, 0.92);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+          width: 74px;
+          background: rgba(14, 19, 31, 0.95);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
           border: 1px solid rgba(255, 255, 255, 0.12);
           border-radius: 20px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 14px 6px;
+          padding: 14px 4px;
           box-sizing: border-box;
           z-index: 100;
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 240, 255, 0.12);
-          transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 240, 255, 0.14);
+          transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
           overflow: hidden;
         }
 
@@ -114,25 +114,26 @@ export const AppSidebar: React.FC<Props> = () => {
           flex-direction: column;
           align-items: center;
           gap: 6px;
-          margin-bottom: 22px;
+          margin-bottom: 18px;
           flex-shrink: 0;
+          width: 100%;
         }
 
         .pokeball-badge {
           position: relative;
-          width: 38px;
-          height: 38px;
+          width: 36px;
+          height: 36px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .pokeball-core {
-          width: 32px;
-          height: 32px;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
           background: linear-gradient(#FF334B 0 46%, #0B0E14 46% 54%, #FFFFFF 54%);
           border: 2px solid #0B0E14;
-          box-shadow: 0 0 18px rgba(255, 51, 75, 0.5);
+          box-shadow: 0 0 16px rgba(255, 51, 75, 0.5);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -163,15 +164,13 @@ export const AppSidebar: React.FC<Props> = () => {
           gap: 3px;
           font-size: 7.5px;
           font-weight: 800;
-          letter-spacing: .02em;
+          letter-spacing: .01em;
           color: #00F0FF;
           background: rgba(0, 240, 255, 0.08);
-          border: 1px solid rgba(0, 240, 255, 0.3);
-          padding: 2px 4px;
+          border: 1px solid rgba(0, 240, 255, 0.35);
+          padding: 2px 5px;
           border-radius: 999px;
-          max-width: 58px;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          max-width: 68px;
           white-space: nowrap;
         }
         .creator-pulse {
@@ -184,16 +183,16 @@ export const AppSidebar: React.FC<Props> = () => {
           flex-shrink: 0;
         }
         .creator-text {
-          overflow: hidden;
-          text-overflow: ellipsis;
           white-space: nowrap;
+          font-family: 'JetBrains Mono', monospace;
+          letter-spacing: -0.02em;
         }
 
         /* Nav Vertical */
         .sidebar-nav {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 8px;
           width: 100%;
           align-items: center;
           flex: 1;
@@ -205,7 +204,7 @@ export const AppSidebar: React.FC<Props> = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 52px;
+          width: 58px;
           height: 52px;
           border-radius: 14px;
           background: rgba(255, 255, 255, 0.03);
