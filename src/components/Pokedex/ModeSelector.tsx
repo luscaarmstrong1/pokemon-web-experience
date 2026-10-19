@@ -35,20 +35,19 @@ export const ModeSelector: React.FC<Props> = ({ modo, onChangeModo }) => {
 
       <style>{`
         .mode-selector {
-          position: absolute;
-          left: 520px;
-          top: 18px;
-          width: 316px;
+          position: relative;
+          width: 290px;
           height: 32px;
           display: flex;
-          background: rgba(14, 19, 31, 0.75);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(14, 19, 31, 0.85);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(255, 255, 255, 0.14);
           border-radius: 999px;
           padding: 3px;
           gap: 3px;
           z-index: 20;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
         }
         .mode-btn {
           flex: 1;

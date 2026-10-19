@@ -81,11 +81,6 @@ export const PokedexPage: React.FC = () => {
         totalPokemon={allPokemonList.length}
       />
 
-      {/* Segmentador de Modos: Normal / Shiny / Cartas */}
-      <div style={{ position: 'absolute', left: '364px', top: '70px', zIndex: 20 }}>
-        <ModeSelector modo={modo} onChangeModo={setModo} />
-      </div>
-
       {/* Painel Esquerdo: Lista de Pokémon com Busca e Filtros */}
       <PokemonSelector
         pokemons={allPokemonList}
@@ -101,10 +96,11 @@ export const PokedexPage: React.FC = () => {
         onSearchChange={setSearchTerm}
       />
 
-      {/* Centro Superior: Hero Stage com Sprite/Arte, Fatos e Galeria de Cartas */}
+      {/* Centro Superior: Hero Stage com Sprite/Arte, Fatos, Modo Normal/Shiny/Cartas e Galeria */}
       <PokemonHero
         pokemon={selectedPokemon}
         modo={modo}
+        onChangeModo={setModo}
         cartas={currentCards}
         isEvolving={isEvolving}
         prevPokemon={prevPokemon}

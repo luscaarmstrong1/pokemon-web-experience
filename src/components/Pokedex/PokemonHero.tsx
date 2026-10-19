@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Pokemon, CartaTCG } from '../../types/pokemon';
+import { ModeSelector } from './ModeSelector';
 
 interface Props {
   pokemon: Pokemon;
   modo: 1 | 2 | 3; // 1 Normal, 2 Shiny, 3 Cartas
+  onChangeModo?: (modo: 1 | 2 | 3) => void;
   cartas: CartaTCG[];
   isEvolving?: boolean;
   prevPokemon?: Pokemon | null;
@@ -12,6 +14,7 @@ interface Props {
 export const PokemonHero: React.FC<Props> = ({
   pokemon,
   modo,
+  onChangeModo,
   cartas,
   isEvolving,
   prevPokemon,
@@ -49,12 +52,17 @@ export const PokemonHero: React.FC<Props> = ({
 
   return (
     <div className={`hero ${isEvolving ? 'evo' : ''} ${modo === 2 ? 'shiny' : ''}`}>
-      {/* Topo do Card */}
+      {/* Topo do Card com Número e Seletor de Modos (Normal / Shiny / Cartas) */}
       <div className="hero-top">
         <span className="hero-num">{numFmt}</span>
+        {onChangeModo && (
+          <div className="hero-mode-container">
+            <ModeSelector modo={modo} onChangeModo={onChangeModo} />
+          </div>
+        )}
       </div>
 
-      {/* Nome e Categoria */}
+      {/* Nome e Categoria do Pokémon */}
       <div className={`hero-nome ${nomeClass}`}>{pokemon.nome}</div>
       {pokemon.categoria && <div className="hero-cat">{pokemon.categoria}</div>}
 
@@ -198,7 +206,13 @@ export const PokemonHero: React.FC<Props> = ({
         }
         .hero-top {
           width: 100%;
-          height: 30px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 2px;
+        }
+        .hero-mode-container {
           display: flex;
           align-items: center;
         }

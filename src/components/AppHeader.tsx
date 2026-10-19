@@ -100,21 +100,20 @@ export const AppHeader: React.FC<Props> = ({
         .header-brand {
           display: flex;
           align-items: center;
-          gap: 12px;
-          width: 320px;
+          gap: 10px;
           flex-shrink: 0;
         }
         .pokeball-badge {
           position: relative;
-          width: 36px;
-          height: 36px;
+          width: 34px;
+          height: 34px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .pokeball-core {
-          width: 32px;
-          height: 32px;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
           background: linear-gradient(#FF334B 0 46%, #0B0E14 46% 54%, #FFFFFF 54%);
           border: 2px solid #0B0E14;
@@ -125,8 +124,8 @@ export const AppHeader: React.FC<Props> = ({
           position: relative;
         }
         .pokeball-button {
-          width: 9px;
-          height: 9px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background: #FFFFFF;
           border: 2px solid #0B0E14;
@@ -150,12 +149,12 @@ export const AppHeader: React.FC<Props> = ({
         .brand-title-row {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 7px;
         }
         .brand-name {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 900;
-          letter-spacing: .2em;
+          letter-spacing: .18em;
           background: linear-gradient(135deg, #FFFFFF 30%, #CBD5E1 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -164,24 +163,24 @@ export const AppHeader: React.FC<Props> = ({
         .creator-badge {
           display: inline-flex;
           align-items: center;
-          gap: 5px;
-          font-size: 9px;
+          gap: 4px;
+          font-size: 8.5px;
           font-weight: 800;
-          letter-spacing: .08em;
+          letter-spacing: .06em;
           color: #00F0FF;
           background: rgba(0, 240, 255, 0.08);
           border: 1px solid rgba(0, 240, 255, 0.3);
-          padding: 2px 7px;
+          padding: 1px 6px;
           border-radius: 999px;
-          box-shadow: 0 0 12px rgba(0, 240, 255, 0.18);
+          box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
           text-transform: lowercase;
         }
         .creator-pulse {
-          width: 5px;
-          height: 5px;
+          width: 4px;
+          height: 4px;
           border-radius: 50%;
           background: #00F0FF;
-          box-shadow: 0 0 6px #00F0FF;
+          box-shadow: 0 0 5px #00F0FF;
           animation: pulse-dot 2s ease-in-out infinite;
         }
         @keyframes pulse-dot {
@@ -189,10 +188,10 @@ export const AppHeader: React.FC<Props> = ({
           50% { transform: scale(1.4); opacity: 0.6; }
         }
         .brand-sub {
-          font-size: 9.5px;
+          font-size: 9px;
           font-weight: 700;
           color: #8A93A3;
-          letter-spacing: .08em;
+          letter-spacing: .06em;
           margin-top: 2px;
         }
 
@@ -200,7 +199,7 @@ export const AppHeader: React.FC<Props> = ({
         .header-center-area {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 8px;
         }
         .header-custom-center {
           display: flex;
@@ -209,23 +208,23 @@ export const AppHeader: React.FC<Props> = ({
         .header-nav {
           display: flex;
           align-items: center;
-          gap: 4px;
-          background: rgba(14, 19, 31, 0.75);
+          gap: 3px;
+          background: rgba(14, 19, 31, 0.85);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.12);
           border-radius: 999px;
           padding: 3px;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
         }
         .nav-btn {
           display: flex;
           align-items: center;
-          gap: 6px;
-          height: 30px;
-          padding: 0 14px;
+          gap: 5px;
+          height: 28px;
+          padding: 0 11px;
           border-radius: 999px;
-          font-size: 11px;
+          font-size: 10.5px;
           font-weight: 700;
           color: #94A3B8;
           text-decoration: none;
@@ -233,7 +232,7 @@ export const AppHeader: React.FC<Props> = ({
           white-space: nowrap;
         }
         .nav-icon {
-          font-size: 11px;
+          font-size: 10px;
         }
         .nav-btn:hover {
           color: #FFFFFF;
@@ -252,7 +251,6 @@ export const AppHeader: React.FC<Props> = ({
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          width: 320px;
           flex-shrink: 0;
           text-align: right;
         }
