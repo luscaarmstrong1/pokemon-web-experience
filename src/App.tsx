@@ -12,7 +12,7 @@ import './styles/animations.css';
 export const App: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Escalonamento 1:1 idêntico ao comum.js (1280x720 ajustado para caber no viewport sem cortar)
+  // Escalonamento responsivo 1:1 rigorosamente centralizado e com margem de respiro perfeita
   useEffect(() => {
     const handleResize = () => {
       const el = containerRef.current;
@@ -20,12 +20,15 @@ export const App: React.FC = () => {
       const palcos = el.querySelectorAll<HTMLElement>('.pk-palco');
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const s = Math.min(w / 1280, h / 720);
-      const tx = (w - 1280 * s) / 2;
-      const ty = (h - 720 * s) / 2;
 
+      // Deixa uma pequena folga de 2% para evitar encostar nas bordas de monitores ultrawide ou telas com barra de tarefas
+      const maxW = w * 0.98;
+      const maxH = h * 0.98;
+      const s = Math.min(maxW / 1280, maxH / 720);
+
+      // Centralização exata com transform-origin no centro
       palcos.forEach((p) => {
-        p.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
+        p.style.transform = `scale(${s})`;
       });
     };
 
@@ -35,7 +38,19 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div id="app-root" ref={containerRef} style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
+    <div
+      id="app-root"
+      ref={containerRef}
+      style={{
+        width: '100vw',
+        height: '100vh',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#0B0E14',
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PokedexPage />} />

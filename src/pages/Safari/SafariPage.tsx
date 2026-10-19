@@ -262,7 +262,10 @@ export const SafariPage: React.FC = () => {
         </nav>
 
         <div className="titulo">
-          <b>ZONA SAFARI</b>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
+            <b>ZONA SAFARI</b>
+            <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#FFCB05', background: 'rgba(255,203,5,.14)', border: '1px solid rgba(255,203,5,.35)', padding: '1px 7px', borderRadius: '999px', textTransform: 'lowercase' }}>por luscaarmstrong</span>
+          </div>
           <span>EXPLORAÇÃO E CAPTURA</span>
         </div>
       </div>

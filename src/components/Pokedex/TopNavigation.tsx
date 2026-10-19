@@ -8,7 +8,7 @@ interface Props {
 export const TopNavigation: React.FC<Props> = ({ totalPokemon }) => {
   return (
     <>
-      {/* Navegador das páginas no topo esquerdo (posição 16, 12, 332, 30) */}
+      {/* Navegador das páginas no topo esquerdo */}
       <nav className="pk-nav">
         <NavLink to="/" end className={({ isActive }) => `pk-nav-item ${isActive ? 'active' : ''}`}>
           Pokédex
@@ -30,12 +30,17 @@ export const TopNavigation: React.FC<Props> = ({ totalPokemon }) => {
         </NavLink>
       </nav>
 
-      {/* Marca Pokédex (posição 24, 48, 320, 40) */}
+      {/* Marca Pokédex com autoria */}
       <div className="mk">
         <div className="mk-ball" />
         <div className="mk-txt">
-          <b>POKÉDEX</b>
-          <span>{totalPokemon !== undefined ? `${totalPokemon.toLocaleString('pt-BR')} Pokémon encontrados` : 'Carregando...'}</span>
+          <div className="mk-tit-linha">
+            <b>POKÉDEX</b>
+            <span className="mk-autor">por luscaarmstrong</span>
+          </div>
+          <span className="mk-sub">
+            {totalPokemon !== undefined ? `${totalPokemon.toLocaleString('pt-BR')} Pokémon encontrados` : 'Carregando...'}
+          </span>
         </div>
       </div>
 
@@ -84,8 +89,8 @@ export const TopNavigation: React.FC<Props> = ({ totalPokemon }) => {
           position: absolute;
           left: 24px;
           top: 48px;
-          width: 320px;
-          height: 40px;
+          width: 330px;
+          height: 42px;
           display: flex;
           align-items: center;
           gap: 12px;
@@ -113,18 +118,38 @@ export const TopNavigation: React.FC<Props> = ({ totalPokemon }) => {
           background: #F2F2F2;
           border: 2px solid #15171C;
         }
-        .mk-txt b {
-          display: block;
+        .mk-txt {
+          display: flex;
+          flex-direction: column;
+        }
+        .mk-tit-linha {
+          display: flex;
+          align-items: baseline;
+          gap: 8px;
+        }
+        .mk-tit-linha b {
           font-size: 20px;
           font-weight: 900;
           letter-spacing: .20em;
           color: #fff;
           line-height: 1.1;
         }
-        .mk-txt span {
-          font-size: 11px;
+        .mk-autor {
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: .08em;
+          color: #FFCB05;
+          background: rgba(255,203,5,.14);
+          border: 1px solid rgba(255,203,5,.35);
+          padding: 1px 7px;
+          border-radius: 999px;
+          text-transform: lowercase;
+        }
+        .mk-sub {
+          font-size: 10.5px;
           font-weight: 600;
           color: #8A93A3;
+          margin-top: 2px;
         }
         @keyframes balanca {
           0%, 70%, 100% { transform: rotate(0); }

@@ -93,7 +93,10 @@ export const OfflinePage: React.FC = () => {
         </nav>
 
         <div className="titulo">
-          <b>CENTRAL OFFLINE & PWA</b>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
+            <b>CENTRAL OFFLINE & PWA</b>
+            <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#FFCB05', background: 'rgba(255,203,5,.14)', border: '1px solid rgba(255,203,5,.35)', padding: '1px 7px', borderRadius: '999px', textTransform: 'lowercase' }}>por luscaarmstrong</span>
+          </div>
           <span>GERENCIAMENTO DE CACHE E INSTALAÇÃO</span>
         </div>
       </div>
