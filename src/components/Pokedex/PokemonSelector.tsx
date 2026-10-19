@@ -150,10 +150,10 @@ export const PokemonSelector: React.FC<Props> = ({
       <style>{`
         .selector-container {
           position: absolute;
-          left: 16px;
-          top: 94px;
-          width: 332px;
-          height: 610px;
+          left: 88px;
+          top: 68px;
+          width: 268px;
+          height: 636px;
           display: flex;
           flex-direction: column;
           gap: 8px;
@@ -162,7 +162,7 @@ export const PokemonSelector: React.FC<Props> = ({
         .filters-row {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 4px;
           height: 32px;
         }
         .filter-select {
@@ -178,13 +178,16 @@ export const PokemonSelector: React.FC<Props> = ({
           cursor: pointer;
         }
         .select-gen {
-          width: 122px;
+          flex: 1.1;
+          min-width: 0;
         }
         .select-tipo {
-          width: 116px;
+          flex: 1;
+          min-width: 0;
         }
         .filter-btn-lend {
-          flex: 1;
+          flex: 0.9;
+          min-width: 0;
           height: 32px;
           background: #141922;
           border: 1px solid rgba(255,255,255,.12);

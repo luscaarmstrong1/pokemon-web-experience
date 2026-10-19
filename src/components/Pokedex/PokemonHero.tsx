@@ -193,12 +193,12 @@ export const PokemonHero: React.FC<Props> = ({
       <style>{`
         .hero {
           position: absolute;
-          left: 364px;
+          left: 368px;
           top: 14px;
-          width: 472px;
+          width: 474px;
           height: 462px;
           box-sizing: border-box;
-          padding: 4px 8px;
+          padding: 2px 8px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -206,11 +206,11 @@ export const PokemonHero: React.FC<Props> = ({
         }
         .hero-top {
           width: 100%;
-          height: 36px;
+          height: 38px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 2px;
+          margin-bottom: 4px;
         }
         .hero-mode-container {
           display: flex;

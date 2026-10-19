@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import tiposDataRaw from '../../data/tipos.json';
 import arenaDadosRaw from '../../data/arena_dados.json';
@@ -140,6 +141,9 @@ export const TypesPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
+      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
+      <AppSidebar paginaAtual="tipos" />
+
       {/* Topo / Header com navegação e abas */}
       <AppHeader
         paginaAtual="tipos"

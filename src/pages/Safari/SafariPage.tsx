@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon } from '../../types/pokemon';
@@ -421,6 +422,9 @@ export const SafariPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
+      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
+      <AppSidebar paginaAtual="safari" />
+
       {/* Topo / Header unificado */}
       <AppHeader
         paginaAtual="safari"
@@ -428,9 +432,9 @@ export const SafariPage: React.FC = () => {
         subtitulo={regiao.subtitulo.toUpperCase()}
       />
 
-      <div style={{ position: 'absolute', inset: '60px 16px 14px 16px', display: 'flex', gap: '16px' }}>
-        {/* Tela do Mapa (Canvas 960x640 com Câmera) */}
-        <div className="vidro" style={{ width: '960px', height: '640px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: '64px 16px 14px 88px', display: 'flex', gap: '14px' }}>
+        {/* Tela do Mapa (Canvas com Câmera) */}
+        <div className="vidro" style={{ flex: 1, height: '640px', position: 'relative', overflow: 'hidden' }}>
           <canvas
             ref={canvasRef}
             width={VIEWPORT_W}

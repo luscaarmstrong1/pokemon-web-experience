@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 
 export const OfflinePage: React.FC = () => {
@@ -70,6 +71,9 @@ export const OfflinePage: React.FC = () => {
 
   return (
     <div className="pk-palco">
+      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
+      <AppSidebar paginaAtual="offline" />
+
       {/* Topo / Header unificado */}
       <AppHeader
         paginaAtual="offline"
@@ -77,7 +81,7 @@ export const OfflinePage: React.FC = () => {
         subtitulo="GERENCIAMENTO DE CACHE E INSTALAÇÃO"
       />
 
-      <div style={{ position: 'absolute', inset: '70px 24px 20px 24px', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ position: 'absolute', inset: '70px 24px 20px 88px', display: 'flex', justifyContent: 'center' }}>
         <div className="vidro" style={{ width: '700px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* Status de Conexão */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,.08)', paddingBottom: '14px' }}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import { ARENAS_TEMATICAS, ArenaCenario } from '../../data/arenasData';
 import { BattleEnvironment } from '../../components/Arena/BattleEnvironment';
@@ -346,6 +347,9 @@ export const ArenaPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
+      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
+      <AppSidebar paginaAtual="arena" />
+
       {/* Topo / Header unificado */}
       <AppHeader
         paginaAtual="arena"
