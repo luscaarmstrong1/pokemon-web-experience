@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon } from '../../types/pokemon';
@@ -157,9 +156,6 @@ export const QuizPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
-      <AppSidebar paginaAtual="quiz" />
-
       {/* Topo / Header unificado */}
       <AppHeader
         paginaAtual="quiz"
@@ -167,7 +163,7 @@ export const QuizPage: React.FC = () => {
         subtitulo="QUEM É ESSE POKÉMON?"
       />
 
-      <div style={{ position: 'absolute', inset: '60px 16px 14px 88px', display: 'flex', gap: '16px' }}>
+      <div className="quiz-layout-container">
         {/* Painel Esquerdo / Central do Jogo */}
         <div className="qz-painel" style={{ flex: 1, position: 'relative' }}>
           {fase === 'inicio' ? (
@@ -387,6 +383,26 @@ export const QuizPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .quiz-layout-container {
+          position: relative;
+          flex: 1;
+          display: flex;
+          gap: 16px;
+          padding: 8px 16px 14px 14px;
+          box-sizing: border-box;
+          overflow: hidden;
+          z-index: 10;
+        }
+
+        @media (max-width: 900px) {
+          .quiz-layout-container {
+            flex-direction: column;
+            overflow-y: auto;
+          }
+        }
+      `}</style>
     </div>
   );
 };

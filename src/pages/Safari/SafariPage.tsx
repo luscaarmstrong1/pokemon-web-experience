@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon } from '../../types/pokemon';
@@ -422,9 +421,6 @@ export const SafariPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
-      <AppSidebar paginaAtual="safari" />
-
       {/* Topo / Header unificado */}
       <AppHeader
         paginaAtual="safari"
@@ -432,9 +428,9 @@ export const SafariPage: React.FC = () => {
         subtitulo={regiao.subtitulo.toUpperCase()}
       />
 
-      <div style={{ position: 'absolute', inset: '64px 16px 14px 88px', display: 'flex', gap: '14px' }}>
+      <div className="safari-layout-container">
         {/* Tela do Mapa (Canvas com Câmera) */}
-        <div className="vidro" style={{ flex: 1, height: '640px', position: 'relative', overflow: 'hidden' }}>
+        <div className="vidro safari-canvas-wrapper">
           <canvas
             ref={canvasRef}
             width={VIEWPORT_W}
@@ -715,6 +711,41 @@ export const SafariPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .safari-layout-container {
+          position: relative;
+          flex: 1;
+          display: flex;
+          gap: 14px;
+          padding: 8px 16px 14px 14px;
+          box-sizing: border-box;
+          overflow: hidden;
+          z-index: 10;
+        }
+
+        .safari-canvas-wrapper {
+          flex: 1;
+          height: 100%;
+          min-height: 0;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+          .safari-layout-container {
+            flex-direction: column;
+            overflow-y: auto;
+          }
+          .safari-canvas-wrapper {
+            height: 480px;
+            flex-shrink: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 };

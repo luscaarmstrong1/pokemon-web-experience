@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import tiposDataRaw from '../../data/tipos.json';
 import arenaDadosRaw from '../../data/arena_dados.json';
@@ -141,9 +140,6 @@ export const TypesPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
-      <AppSidebar paginaAtual="tipos" />
-
       {/* Topo / Header com navegação e abas */}
       <AppHeader
         paginaAtual="tipos"
@@ -169,7 +165,7 @@ export const TypesPage: React.FC = () => {
 
       {/* ABA 1: RODA DE TIPOS */}
       {aba === 'roda' && (
-        <div style={{ position: 'absolute', inset: '60px 0 0 0', display: 'flex', justifyContent: 'center' }}>
+        <div className="types-tab-container" style={{ position: 'relative', flex: 1, display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
           {/* Segmentador de modo Ataque / Defesa */}
           <div className="roda-modos modos">
             <span
@@ -317,7 +313,7 @@ export const TypesPage: React.FC = () => {
 
       {/* ABA 2: MATRIZ 18x18 */}
       {aba === 'matriz' && (
-        <div style={{ position: 'absolute', inset: '70px 16px 16px 16px', overflow: 'auto', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ position: 'relative', flex: 1, padding: '10px 16px', overflow: 'auto', display: 'flex', justifyContent: 'center' }}>
           <div className="matriz">
             <div className="canto">
               <span>DEFENSOR →</span>
@@ -365,7 +361,7 @@ export const TypesPage: React.FC = () => {
 
       {/* ABA 3: RANKINGS DAS 171 COMBINAÇÕES */}
       {aba === 'rankings' && (
-        <div style={{ position: 'absolute', inset: '70px 24px 20px 24px', overflowY: 'auto' }}>
+        <div style={{ position: 'relative', flex: 1, padding: '10px 16px', overflowY: 'auto' }}>
           <div className="vidro" style={{ padding: '16px' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13px' }}>
               <thead>
@@ -409,8 +405,8 @@ export const TypesPage: React.FC = () => {
 
       {/* ABA 4: CALCULADORA DE CONFRONTO */}
       {aba === 'calc' && (
-        <div style={{ position: 'absolute', inset: '80px 24px 20px 24px', display: 'flex', justifyContent: 'center' }}>
-          <div className="vidro" style={{ width: '600px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ position: 'relative', flex: 1, padding: '16px 20px', overflowY: 'auto', display: 'flex', justifyContent: 'center' }}>
+          <div className="vidro" style={{ width: '100%', maxWidth: '680px', height: 'fit-content', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <h3 style={{ color: '#FFCB05', fontSize: '18px', letterSpacing: '.1em' }}>CALCULADORA DE EFICÁCIA</h3>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>

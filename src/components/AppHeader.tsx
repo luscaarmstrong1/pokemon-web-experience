@@ -56,14 +56,15 @@ export const AppHeader: React.FC<Props> = ({
 
       <style>{`
         .app-header-unified {
-          position: absolute;
-          left: 90px;
-          right: 18px;
-          top: 14px;
+          position: relative;
+          width: 100%;
           height: 48px;
+          min-height: 48px;
           display: flex;
           align-items: center;
           justify-content: space-between;
+          padding: 8px 16px;
+          box-sizing: border-box;
           z-index: 40;
           pointer-events: auto;
         }

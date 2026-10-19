@@ -89,11 +89,11 @@ export const WeaknessGrid: React.FC<Props> = ({ pokemon }) => {
 
       <style>{`
         .weakness-panel {
-          position: absolute;
-          left: 856px;
-          top: 318px;
-          width: 408px;
-          height: 222px;
+          position: relative;
+          width: 100%;
+          min-height: 180px;
+          flex-shrink: 0;
+          box-sizing: border-box;
           z-index: 10;
         }
         .weakness-content {

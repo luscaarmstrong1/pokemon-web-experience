@@ -68,6 +68,14 @@ export const PokemonSelector: React.FC<Props> = ({
 
   return (
     <div className="selector-container">
+      {/* Identificação do Módulo e Contagem */}
+      <div className="selector-header-info">
+        <h2 className="selector-title">POKÉDEX NACIONAL</h2>
+        <span className="selector-count">
+          <b>{filteredList.length.toLocaleString('pt-BR')}</b> POKÉMON EXIBIDOS
+        </span>
+      </div>
+
       {/* Controles de Filtros */}
       <div className="filters-row">
         {/* Dropdown Geração (16, 94, 118, 32) */}
@@ -149,21 +157,53 @@ export const PokemonSelector: React.FC<Props> = ({
 
       <style>{`
         .selector-container {
-          position: absolute;
-          left: 96px;
-          top: 14px;
-          width: 260px;
-          height: 692px;
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 0;
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          z-index: 15;
+          gap: 10px;
+          box-sizing: border-box;
+          padding: 12px;
+          border-radius: 18px;
+          background: linear-gradient(160deg, rgba(22, 28, 42, 0.88), rgba(10, 13, 20, 0.92));
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.09);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 45px rgba(0, 0, 0, 0.45);
+          overflow: hidden;
+          z-index: 10;
+        }
+        .selector-header-info {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding-bottom: 4px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .selector-title {
+          font-size: 13px;
+          font-weight: 900;
+          letter-spacing: .12em;
+          color: #FFFFFF;
+          margin: 0;
+        }
+        .selector-count {
+          font-size: 9px;
+          font-weight: 700;
+          letter-spacing: .06em;
+          color: #8A93A3;
+        }
+        .selector-count b {
+          color: #FFCB05;
         }
         .filters-row {
           display: flex;
           align-items: center;
-          gap: 4px;
+          gap: 6px;
           height: 32px;
+          flex-shrink: 0;
         }
         .filter-select {
           background: #141922;
@@ -211,8 +251,9 @@ export const PokemonSelector: React.FC<Props> = ({
         }
 
         .search-box {
-          height: 30px;
+          height: 32px;
           width: 100%;
+          flex-shrink: 0;
         }
         .search-input {
           width: 100%;
@@ -224,6 +265,7 @@ export const PokemonSelector: React.FC<Props> = ({
           font-size: 11px;
           padding: 0 10px;
           outline: none;
+          box-sizing: border-box;
         }
         .search-input:focus {
           border-color: #FFCB05;
@@ -232,10 +274,11 @@ export const PokemonSelector: React.FC<Props> = ({
 
         .pokemon-grid {
           flex: 1;
+          min-height: 0;
           overflow-y: auto;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-auto-rows: 96px;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-auto-rows: 92px;
           gap: 6px;
           padding-right: 2px;
         }

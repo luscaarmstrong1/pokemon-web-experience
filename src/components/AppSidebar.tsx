@@ -88,11 +88,11 @@ export const AppSidebar: React.FC<Props> = () => {
 
       <style>{`
         .app-sidebar {
-          position: absolute;
-          left: 12px;
-          top: 14px;
-          bottom: 14px;
-          width: 74px;
+          position: fixed;
+          left: 10px;
+          top: 10px;
+          bottom: 10px;
+          width: 72px;
           background: rgba(14, 19, 31, 0.95);
           backdrop-filter: blur(18px);
           -webkit-backdrop-filter: blur(18px);
@@ -101,12 +101,40 @@ export const AppSidebar: React.FC<Props> = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 14px 4px;
+          padding: 12px 4px;
           box-sizing: border-box;
-          z-index: 100;
+          z-index: 1000;
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 240, 255, 0.14);
           transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
           overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+          .app-sidebar {
+            top: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 62px;
+            flex-direction: row;
+            padding: 4px 10px;
+            border-radius: 16px 16px 0 0;
+            justify-content: space-around;
+            border-bottom: none;
+          }
+          .sidebar-brand {
+            display: none !important;
+          }
+          .sidebar-nav {
+            flex-direction: row !important;
+            justify-content: space-around;
+            gap: 2px !important;
+          }
+          .sidebar-btn {
+            width: 48px !important;
+            height: 48px !important;
+          }
         }
 
         .sidebar-brand {

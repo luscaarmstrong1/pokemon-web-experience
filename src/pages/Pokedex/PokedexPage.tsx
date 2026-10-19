@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import pokemonDataRaw from '../../data/pokemon.json';
 import { Pokemon, CartaTCG } from '../../types/pokemon';
 import { DynamicBackground } from '../../components/Pokedex/DynamicBackground';
-import { AppSidebar } from '../../components/AppSidebar';
 import { PokemonSelector } from '../../components/Pokedex/PokemonSelector';
 import { PokemonHero } from '../../components/Pokedex/PokemonHero';
 import { StatsRadar } from '../../components/Pokedex/StatsRadar';
@@ -63,7 +62,7 @@ export const PokedexPage: React.FC = () => {
   };
 
   return (
-    <div className="pk-palco">
+    <div className="pk-palco pokedex-fullscreen-layout">
       {/* Fundo Dinâmico com Partículas por Tipo */}
       <DynamicBackground
         tipo1Slug={selectedPokemon.tipo1Slug}
@@ -72,55 +71,165 @@ export const PokedexPage: React.FC = () => {
         isShiny={modo === 2}
       />
 
-      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
-      <AppSidebar paginaAtual="pokedex" />
+      {/* Grade de 3 Colunas Fluida */}
+      <div className="pokedex-grid-container">
+        {/* Coluna 1: Seletor de Pokémon com Filtros e Rolagem Independente */}
+        <aside className="pokedex-col-selector">
+          <PokemonSelector
+            pokemons={allPokemonList}
+            selectedId={selectedPokemon.pokemonId}
+            onSelect={(p) => handleSelectPokemon(p, false)}
+            selectedGen={selectedGen}
+            onSelectGen={setSelectedGen}
+            selectedTipo={selectedTipo}
+            onSelectTipo={setSelectedTipo}
+            onlyLegendary={onlyLegendary}
+            onToggleLegendary={() => setOnlyLegendary(!onlyLegendary)}
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+          />
+        </aside>
 
-      {/* Painel Esquerdo: Lista de Pokémon com Busca e Filtros */}
-      <PokemonSelector
-        pokemons={allPokemonList}
-        selectedId={selectedPokemon.pokemonId}
-        onSelect={(p) => handleSelectPokemon(p, false)}
-        selectedGen={selectedGen}
-        onSelectGen={setSelectedGen}
-        selectedTipo={selectedTipo}
-        onSelectTipo={setSelectedTipo}
-        onlyLegendary={onlyLegendary}
-        onToggleLegendary={() => setOnlyLegendary(!onlyLegendary)}
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-      />
+        {/* Coluna 2: Apresentação Central do Pokémon e Linha Evolutiva */}
+        <section className="pokedex-col-center">
+          <div className="hero-scroll-area">
+            <PokemonHero
+              pokemon={selectedPokemon}
+              modo={modo}
+              onChangeModo={setModo}
+              cartas={currentCards}
+              isEvolving={isEvolving}
+              prevPokemon={prevPokemon}
+            />
+            <EvolutionChain
+              currentPokemon={selectedPokemon}
+              allPokemon={allPokemonList}
+              modo={modo}
+              onSelectPokemon={handleSelectPokemon}
+            />
+          </div>
+        </section>
 
-      {/* Centro Superior: Hero Stage com Sprite/Arte, Fatos, Modo Normal/Shiny/Cartas e Galeria */}
-      <PokemonHero
-        pokemon={selectedPokemon}
-        modo={modo}
-        onChangeModo={setModo}
-        cartas={currentCards}
-        isEvolving={isEvolving}
-        prevPokemon={prevPokemon}
-      />
+        {/* Coluna 3: Painéis de Atributos, Fraquezas e Formas Alternativas */}
+        <aside className="pokedex-col-info">
+          <div className="info-scroll-area">
+            <StatsRadar pokemon={selectedPokemon} />
+            <WeaknessGrid pokemon={selectedPokemon} />
+            <AlternativeForms
+              currentPokemon={selectedPokemon}
+              allPokemon={allPokemonList}
+              modo={modo}
+              onSelectForm={(p) => handleSelectPokemon(p, false)}
+            />
+          </div>
+        </aside>
+      </div>
 
-      {/* Centro Inferior: Painel de Evolução Interativa */}
-      <EvolutionChain
-        currentPokemon={selectedPokemon}
-        allPokemon={allPokemonList}
-        modo={modo}
-        onSelectPokemon={handleSelectPokemon}
-      />
+      <style>{`
+        .pokedex-fullscreen-layout {
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+        }
 
-      {/* Painel Direito Superior: Radar de Atributos SVG e Barras */}
-      <StatsRadar pokemon={selectedPokemon} />
+        .pokedex-grid-container {
+          position: relative;
+          z-index: 10;
+          width: 100%;
+          height: 100%;
+          display: grid;
+          grid-template-columns: minmax(260px, 290px) minmax(420px, 1fr) minmax(320px, 400px);
+          gap: 14px;
+          padding: 12px 16px 12px 14px;
+          box-sizing: border-box;
+          overflow: hidden;
+        }
 
-      {/* Painel Direito Meio: Fraquezas, Resistências e Imunidades */}
-      <WeaknessGrid pokemon={selectedPokemon} />
+        .pokedex-col-selector {
+          height: 100%;
+          min-height: 0;
+          display: flex;
+          flex-direction: column;
+        }
 
-      {/* Painel Direito Inferior: Formas Alternativas (Mega, Gigantamax, Regionais) */}
-      <AlternativeForms
-        currentPokemon={selectedPokemon}
-        allPokemon={allPokemonList}
-        modo={modo}
-        onSelectForm={(p) => handleSelectPokemon(p, false)}
-      />
+        .pokedex-col-center {
+          height: 100%;
+          min-height: 0;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+
+        .hero-scroll-area {
+          height: 100%;
+          min-height: 0;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding-right: 4px;
+        }
+
+        .pokedex-col-info {
+          height: 100%;
+          min-height: 0;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+
+        .info-scroll-area {
+          height: 100%;
+          min-height: 0;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding-right: 4px;
+        }
+
+        @media (max-width: 1120px) {
+          .pokedex-grid-container {
+            grid-template-columns: 260px 1fr;
+            grid-template-rows: 1fr;
+          }
+          .pokedex-col-info {
+            grid-column: 1 / -1;
+            height: auto;
+            max-height: 400px;
+          }
+          .pokedex-fullscreen-layout {
+            overflow-y: auto;
+            height: auto;
+            min-height: 100vh;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .pokedex-grid-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 10px;
+            overflow-y: auto;
+            height: auto;
+          }
+          .pokedex-col-selector,
+          .pokedex-col-center,
+          .pokedex-col-info {
+            height: auto;
+            min-height: auto;
+          }
+          .hero-scroll-area,
+          .info-scroll-area {
+            overflow-y: visible;
+            height: auto;
+          }
+        }
+      `}</style>
     </div>
   );
 };

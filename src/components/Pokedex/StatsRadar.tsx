@@ -125,11 +125,11 @@ export const StatsRadar: React.FC<Props> = ({ pokemon }) => {
 
       <style>{`
         .stats-panel {
-          position: absolute;
-          left: 856px;
-          top: 16px;
-          width: 408px;
-          height: 290px;
+          position: relative;
+          width: 100%;
+          min-height: 220px;
+          flex-shrink: 0;
+          box-sizing: border-box;
           z-index: 10;
         }
         .stats-content {

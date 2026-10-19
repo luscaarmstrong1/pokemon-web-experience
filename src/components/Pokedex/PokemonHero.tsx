@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Pokemon, CartaTCG } from '../../types/pokemon';
 import { ModeSelector } from './ModeSelector';
 
@@ -106,8 +107,8 @@ export const PokemonHero: React.FC<Props> = ({
         {modo === 2 && <span className="pill pill-shiny">✨ SHINY</span>}
       </div>
 
-      {/* Modal de Alta Resolução / Download da Carta */}
-      {modalCard && (
+      {/* Modal de Alta Resolução / Download da Carta via Portal */}
+      {modalCard && createPortal(
         <div className="card-modal-overlay" onClick={() => setModalCard(null)}>
           <div className="card-modal-content" onClick={(e) => e.stopPropagation()}>
             <button
@@ -161,7 +162,8 @@ export const PokemonHero: React.FC<Props> = ({
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Modo Cartas vs Palco de Batalha */}
@@ -300,16 +302,16 @@ export const PokemonHero: React.FC<Props> = ({
 
       <style>{`
         .hero {
-          position: absolute;
-          left: 368px;
-          top: 14px;
-          width: 474px;
-          height: 462px;
+          position: relative;
+          width: 100%;
+          flex: 1;
+          min-height: 0;
           box-sizing: border-box;
-          padding: 2px 8px;
+          padding: 8px 12px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: flex-start;
           z-index: 10;
         }
         .hero-top {

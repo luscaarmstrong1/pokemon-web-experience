@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppSidebar } from '../../components/AppSidebar';
 import { AppHeader } from '../../components/AppHeader';
 import { ARENAS_TEMATICAS, ArenaCenario } from '../../data/arenasData';
 import { BattleEnvironment } from '../../components/Arena/BattleEnvironment';
@@ -347,9 +346,6 @@ export const ArenaPage: React.FC = () => {
 
   return (
     <div className="pk-palco">
-      {/* Barra Lateral Vertical de Módulos (Esquerda) */}
-      <AppSidebar paginaAtual="arena" />
-
       {/* Topo / Header unificado */}
       <AppHeader
         paginaAtual="arena"
@@ -359,7 +355,7 @@ export const ArenaPage: React.FC = () => {
 
       {/* FASE 1: SELEÇÃO DE EQUIPES */}
       {fase === 'selecao' && (
-        <>
+        <div className="arena-selection-container">
           <div className="sel-bg" />
 
           {/* Coluna do Jogador (Esquerda) */}
@@ -607,7 +603,7 @@ export const ArenaPage: React.FC = () => {
               ⚔ BATALHAR!
             </button>
           </div>
-        </>
+        </div>
       )}
 
       {/* FASE 2: INTRO VS */}

@@ -97,11 +97,11 @@ export const EvolutionChain: React.FC<Props> = ({
 
       <style>{`
         .evo-panel {
-          position: absolute;
-          left: 360px;
-          top: 486px;
-          width: 480px;
-          height: 218px;
+          position: relative;
+          width: 100%;
+          min-height: 180px;
+          flex-shrink: 0;
+          box-sizing: border-box;
           z-index: 10;
         }
         .evo-items-container {

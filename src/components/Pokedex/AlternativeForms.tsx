@@ -63,11 +63,11 @@ export const AlternativeForms: React.FC<Props> = ({
 
       <style>{`
         .forms-panel {
-          position: absolute;
-          left: 856px;
-          top: 552px;
-          width: 408px;
-          height: 152px;
+          position: relative;
+          width: 100%;
+          min-height: 140px;
+          flex-shrink: 0;
+          box-sizing: border-box;
           z-index: 10;
         }
         .forms-list {
